@@ -1,13 +1,23 @@
-<h2><%= @story.title %></h2>
-<h3><%= @story.creator %></h3>
-<h4><%= @story.category.name %></h4>
-<p><%= @story.description %></p>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @story.story_img.url(:story_show), class: "story-show" %>
+	</div>
+
+	<div class="col-md-8">
+		<div class="story-info">
+			<h2 class="story-title"><%= @story.title %></h2>
+			<h3 class="story-creator"><span> From: </span><%= @story.creator %></h3>
+			<h4 class="story-category"><%= @story.category.name %></h4>
+			<p class="story-desc"><%= @story.description %></p>
+		</div>
+	</div>
+</div>
 
 <div class="links btn-group">
 	<% if user_signed_in? %>
 		<% if @story.user_id == current_user.id %>
-			<%= link_to "Edit", edit_story_path(@story) %>
-			<%= link_to "Delete", story_path(@story), method: :delete, data: { confirm: "Are you sure?" } %>
+			<%= link_to "Edit", edit_story_path(@story), class: "btn btn-custom" %>
+			<%= link_to "Delete", story_path(@story), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
 		<% end %>
 	<% end %>
 </div>
