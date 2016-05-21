@@ -1,5 +1,6 @@
 <%= simple_form_for @story do |f| %>
 	<%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select Category") %>
+	<%= f.file_field :story_img %>
 	<%= f.input :title, label: "Story Title" %>
 	<%= f.input :description %>
 	<%= f.input :creator %>
