@@ -3,7 +3,13 @@
 <% if @stories.count == 0 %>
 	<h3> There are no stories in this category </h3>
 <% else %>
-	<% @stories.each do |story| %>
-		<h2><%= link_to story.title, story_path(story) %></h2>
-	<% end %>
+	<div class="row">
+		<% @stories.each do |story| %>
+			<div class="col-md-3">
+				<a href="/stories/ <%= story.id %>">
+					<%= image_tag story.story_img.url(:story_index), class: "story" %>
+				</a>
+			</div>
+		<% end %>
+	</div>
 <% end %>
