@@ -2,6 +2,11 @@
 <h3><%= @story.creator %></h3>
 <p><%= @story.description %></p>
 
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_story_path(@story) %>
-<%= link_to "Delete", story_path(@story), method: :delete, data: { confirm: "Are you sure?" } %>
+<div class="links btn-group">
+	<% if user_signed_in? %>
+		<% if @story.user_id == current_user.id %>
+			<%= link_to "Edit", edit_story_path(@story) %>
+			<%= link_to "Delete", story_path(@story), method: :delete, data: { confirm: "Are you sure?" } %>
+		<% end %>
+	<% end %>
+</div>

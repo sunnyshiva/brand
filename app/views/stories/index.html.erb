@@ -1,5 +1,3 @@
 <%= @stories.each do |story| %>
 	<h2><%= link_to story.title, story_path(story) %></h2>
 <% end %>
-
-<%= link_to "Add Story", new_story_path %>
