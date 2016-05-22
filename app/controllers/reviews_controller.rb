@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :find_story
+	before_action :find_review, only: [:edit, :update, :destroy]
 
 	def new
 		@review = Review.new
@@ -17,6 +18,22 @@ class ReviewsController < ApplicationController
 		end
 	end
 
+	def edit	
+	end
+
+	def update
+		if @review.update(review_params)
+			redirect_to story_path(@story)
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@review.destroy
+		redirect_to story_path(@story)
+	end
+
 	private
 
 		def review_params
@@ -25,6 +42,10 @@ class ReviewsController < ApplicationController
 
 		def find_story
 			@story = Story.find(params[:story_id])
+		end
+
+		def find_review
+			@review = Review.find(params[:id])
 		end
 
 end
