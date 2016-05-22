@@ -8,6 +8,9 @@
 			<h2 class="story-title"><%= @story.title %></h2>
 			<h3 class="story-creator"><span><em> From: </em></span><%= @story.creator %></h3>
 			<h4 class="story-category"><%= @story.category.name %></h4>
+			<h4 class="avg-rating">Average Rating</h4>
+			<div class="average-review-rating" data-score="<%= @average_review %>"></div>
+			<span class="number-of-reviews"> <em> From: </em> <%= @story.reviews.count %> reviews </span>
 			<p class="story-desc"><%= @story.description %></p>
 		</div>
 	</div>
@@ -33,3 +36,23 @@
 		<% end %>
 	<% end %>
 </div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>
